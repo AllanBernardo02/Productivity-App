@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const SignUp = () => {
+const SignUp = ({handleChange, onSubmit, form}) => {
   return (
     <>
     <div className="vh-100" style={{ backgroundColor: "#F5F5F5" }}>
@@ -28,31 +28,31 @@ const SignUp = () => {
               </div>
               <div className="col-md-6 p-3 px-lg-5 py-lg-4">
                   <h2 className="fw-bold mb-3">Register</h2>
-                  <form >
+                  <form onSubmit={onSubmit}>
                     <div className="row g-3 mb-3">
                       <div className="col-md-6">
                         <label className="form-label fs-sm">First Name</label>
-                        <input/>
+                        <input placeholder='Enter First Name' id="firstName" value={form.firstName}  onChange={handleChange}/>
                       </div>
                       <div className="col-md-6">
                         <label className="form-label fs-sm">Last Name</label>
-                        <input/>
+                        <input placeholder='Enter Last Name' id="lastName" value={form.lastName} onChange={handleChange}/>
                       </div>
                       <div className="col-md-12">
                         <label className="form-label fs-sm">
                           Email Address
                         </label>
-                        <input/>
+                        <input className="col-md-12" placeholder='Enter Email' id="email" value={form.email} onChange={handleChange}/>
                       </div>
                       <div className="col-md-6">
                         <label className="form-label fs-sm">Password</label>
-                        <input/>
+                        <input type='password' placeholder='Enter Password' id="password" value={form.password} onChange={handleChange}/>
                       </div>
                       <div className="col-md-6">
                         <label className="form-label fs-sm">
                           Confirm Password
                         </label>
-                        <input/>
+                        <input type='password' placeholder='Confirm Password' id="confirmPassword" value={form.confirmPassword} onChange={handleChange}/>
                       </div>
                       <div className="col-md-12">
                         <div className="form-check">
@@ -79,7 +79,7 @@ const SignUp = () => {
                        
                         type="submit"
                         className="btn btn-primary w-50"
-                        style={{ backgroundColor: "rgba(0, 86, 86, 1)" }}
+                        style={{ backgroundColor: "black" }}
                       >
                         SIGNUP
                       </button>
