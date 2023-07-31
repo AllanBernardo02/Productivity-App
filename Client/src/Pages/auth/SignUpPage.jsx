@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import SignUp from '../../components/authentication/SignUp'
 import { registerUser } from '../../api/api'
+import { useNavigate } from 'react-router-dom';
 
 import toast from "react-hot-toast";
 
@@ -12,6 +13,8 @@ const SignUpPage = () => {
         password: "",
         confirmPassword: ""
     })
+
+    const navigate = useNavigate()
 
     const onChange = (e) => {
         const value = e.target.value
@@ -35,7 +38,8 @@ const SignUpPage = () => {
             const response = await registerUser(formData)
 
             if(response) {
-                alert("hi")
+                toast.success("SuccesFully Created")
+                navigate('/signin')
             }
         } catch (error) {
             
