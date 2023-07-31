@@ -40,6 +40,55 @@ const signup = async (req, res) => {
   }
 };
 
+const signin = async (req, res) => {
+  const { email, password } = req.body;
+
+  try {
+    const existingUser = await userModel.findOne({ email });
+
+    if (!existingUser) {
+      return res.status(404).json({ message: "Email doesn't exist" });
+    }
+
+    const isPasswordCorrect = await bcrypt.compare(
+      password,
+      existingUser.password
+    );
+
+    if (!isPasswordCorrect) {
+      return res.status(400).json({ message: "Wrong Password" });
+    }
+
+    const tokenPayload = { email: existingUser.email, id: existingUser._id };
+    const tokenSecret = "test";
+    const tokenOptions = { expiresIn: "1h" };
+    const token = jwt.sign(tokenPayload, tokenSecret, tokenOptions);
+
+    res.status(200).json({
+      message: "SuccessFully Login",
+      success: true,
+      user: existingUser,
+      token: token,
+    });
+  } catch (error) {
+    res.status(500).json({ error: "An error occurred during registration" });
+  }
+};
+
+const getUser = async (req, res) => {
+  try {
+    const user = await userModel.find();
+
+    res.status(200).json({
+      message: "Successfully Get All User",
+      success: true,
+      user: user,
+    });
+  } catch (error) {}
+};
+
 module.exports = {
   signup: signup,
+  signin: signin,
+  getUser: getUser,
 };
