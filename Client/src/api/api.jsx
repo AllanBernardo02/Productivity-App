@@ -23,3 +23,12 @@ export const loginUser = async (formData) => {
     throw error;
   }
 };
+
+export const getSuperHeroes = async () => {
+  try {
+    const response = await axios.get('http://localhost:4000/superheroes')
+    return response.data
+  } catch (error) {
+    throw error
+  }
+}

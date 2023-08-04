@@ -4,6 +4,7 @@ import SignUpPage from "./Pages/auth/SignUpPage.jsx";
 import { Toaster } from "react-hot-toast";
 import SignInPage from "./Pages/auth/SignInPage.jsx";
 import Homepage from "./Pages/home/Homepage.jsx";
+import Fetch from "./Pages/React-Query/Fetch.jsx";
 
 // import "./App.css";
 
@@ -14,6 +15,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/homepage" element={<Homepage/>}/>
+          <Route path="/fetch" element={<Fetch/>}/>
           <Route path="/signup" element={<SignUpPage />} />
           <Route path="/signin" element={<SignInPage/>}/>
         </Routes>
