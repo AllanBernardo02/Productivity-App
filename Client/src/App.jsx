@@ -5,7 +5,7 @@ import { Toaster } from "react-hot-toast";
 import SignInPage from "./Pages/auth/SignInPage.jsx";
 import Homepage from "./Pages/home/Homepage.jsx";
 import Fetch from "./Pages/React-Query/Fetch.jsx";
-
+import { ReactQueryDevtools } from "react-query/devtools";
 // import "./App.css";
 
 function App() {
@@ -19,7 +19,9 @@ function App() {
           <Route path="/signup" element={<SignUpPage />} />
           <Route path="/signin" element={<SignInPage/>}/>
         </Routes>
+       
       </Router>
+      <ReactQueryDevtools initialIsOpem={false} position="bottom-right" />
     </>
   );
 }
