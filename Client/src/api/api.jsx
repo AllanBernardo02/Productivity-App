@@ -32,3 +32,13 @@ export const getSuperHeroes = async () => {
     throw error
   }
 }
+
+export const createSuperHeroes = async (superheroes) => {
+  try {
+    const response = await axios.post('http://localhost:4000/superheroes', superheroes)
+    return response.data
+  } catch (error) {
+    console.log("create-error", error.message)
+    throw error
+  }
+}
