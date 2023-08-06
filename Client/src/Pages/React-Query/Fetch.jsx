@@ -68,7 +68,7 @@ const Fetch = () => {
               className="form-control mb-3"
             />
             <button type="submit" className="btn btn-primary">
-              Submit
+              {mutation.isLoading ? "Submitting..." : "Submit"}
             </button>
           </form>
         </div>
