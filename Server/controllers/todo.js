@@ -53,8 +53,34 @@ const deleteTodo = async (req, res) => {
   }
 };
 
+const updateTodo = async (req, res) => {
+  const id = req.params.id;
+  const { todoName } = req.body;
+
+  if (!mongoose.Types.ObjectId.isValid(id))
+    return res.status(404).send(`No post with id: ${id}`);
+
+  const updateTodoName = {
+    todoName,
+    _id: id,
+  };
+
+  try {
+    const todo = await todoModel.findByIdAndUpdate(id, updateTodoName);
+
+    res.status(200).json({
+      success: true,
+      message: "Todo Name updated successfully",
+      data: todo,
+    });
+  } catch (error) {
+    res.status(500).json({ error: "Failed to Update Todo" });
+  }
+};
+
 module.exports = {
   createTodo: createTodo,
   getTodo: getTodo,
   deleteTodo: deleteTodo,
+  updateTodo: updateTodo,
 };

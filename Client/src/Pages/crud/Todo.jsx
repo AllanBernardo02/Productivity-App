@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "react-query";
-import { createTodo, deleteTodo, getTodo } from "../../api/api";
+import { createTodo, deleteTodo, getTodo, updateTodo } from "../../api/api";
 import { toast } from "react-hot-toast";
 
 const Todo = () => {
   const [form, setForm] = useState({
     todoName: "",
   });
+  const [editTodo, setEditTodo] = useState(null);
 
   const queryClient = useQueryClient();
 
@@ -23,10 +24,28 @@ const Todo = () => {
     },
   });
 
+  const updateMutation = useMutation({
+    mutationFn: updateTodo, // Assuming you have an updateTodo function in your API to update todos.
+    onSuccess: () => {
+      queryClient.invalidateQueries(["todo"]);
+      toast.success("Updated SuccessFully");
+    },
+  });
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    mutation.mutate({ ...form });
+    if (editTodo) {
+      updateMutation.mutate({
+        id: editTodo._id,
+        data: { todoName: form.todoName },
+      });
+      setEditTodo(null);
+    } else {
+      mutation.mutate({ ...form });
+    }
+
+    setForm({ todoName: "" });
   };
 
   const handleChange = (e) => {
@@ -47,6 +66,17 @@ const Todo = () => {
   const handleDelete = (id) => {
     console.log("Delete", id);
     deleteMutation.mutate(id);
+  };
+
+  //edit
+  const handleEdit = (id) => {
+    console.log("Edit", id);
+
+    const todoToEdit = data?.data.find((o) => o._id === id);
+    if (todoToEdit) {
+      setEditTodo(todoToEdit);
+      setForm({ todoName: todoToEdit.todoName }); // Set the input field value with the todoName for editing.
+    }
   };
 
   if (isLoading) {
@@ -70,9 +100,10 @@ const Todo = () => {
             id="todoName"
             className="form-control me-3"
             onChange={handleChange}
+            value={form.todoName}
           />
           <button type="submit" className="btn btn-primary">
-            Submit
+            {editTodo ? "Update" : "Submit"}
           </button>
         </form>
       </div>
@@ -83,7 +114,10 @@ const Todo = () => {
               <h6>{o.todoName}</h6>
             </div>
             <div className="ms-auto">
-              <button className="btn btn-outline-primary me-2">
+              <button
+                className="btn btn-outline-primary me-2"
+                onClick={() => handleEdit(o._id)}
+              >
                 <i className="bi bi-pencil-square"></i>
               </button>
               <button

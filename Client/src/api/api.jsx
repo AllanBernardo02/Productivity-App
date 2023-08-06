@@ -52,6 +52,16 @@ export const deleteTodo = async (id) => {
   }
 }
 
+export const updateTodo = async ({id, data}) => {
+  console.log("uppp", data)
+  try {
+    const response = await api.patch(`/api/updateTodo/${id}`, data)
+    return response.data
+  } catch (error) {
+    throw error
+  }
+}
+
 export const getSuperHeroes = async () => {
   try {
     const response = await axios.get('http://localhost:4000/superheroes')
