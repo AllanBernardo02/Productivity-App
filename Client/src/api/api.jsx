@@ -43,7 +43,7 @@ export const getTodo = async () => {
 }
 
 export const deleteTodo = async (id) => {
-  console.log("get haha", id)
+  
   try {
     const response = await api.delete(`/api/deleteTodo/${id}`)
     return response.data
@@ -53,7 +53,7 @@ export const deleteTodo = async (id) => {
 }
 
 export const updateTodo = async ({id, data}) => {
-  console.log("uppp", data)
+  
   try {
     const response = await api.patch(`/api/updateTodo/${id}`, data)
     return response.data

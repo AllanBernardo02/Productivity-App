@@ -51,7 +51,6 @@ const Todo = () => {
   const handleChange = (e) => {
     const value = e.target.value;
     setForm({ ...form, [e.target.id]: value });
-    console.log(form);
   };
 
   //delete
@@ -64,14 +63,11 @@ const Todo = () => {
   });
 
   const handleDelete = (id) => {
-    console.log("Delete", id);
     deleteMutation.mutate(id);
   };
 
   //edit
   const handleEdit = (id) => {
-    console.log("Edit", id);
-
     const todoToEdit = data?.data.find((o) => o._id === id);
     if (todoToEdit) {
       setEditTodo(todoToEdit);
@@ -86,8 +82,6 @@ const Todo = () => {
   if (isError) {
     return <h1>{error.message}</h1>;
   }
-
-  console.log("Get Todo", data?.data);
 
   return (
     <div className="d-flex flex-column justify-content-center align-items-center vh-100">
