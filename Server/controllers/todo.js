@@ -1,3 +1,4 @@
+const { default: mongoose } = require("mongoose");
 const todoModel = require("../models/todoModel");
 
 const createTodo = async (req, res) => {
@@ -34,7 +35,26 @@ const getTodo = async (req, res) => {
   }
 };
 
+const deleteTodo = async (req, res) => {
+  const id = req.params.id;
+  try {
+    if (!mongoose.Types.ObjectId.isValid(id))
+      return res.status(404).send(`No post with id: ${id}`);
+
+    const todo = await todoModel.findByIdAndRemove(id);
+
+    res.status(201).json({
+      message: "SuccessFully Deleted Todo Name",
+      success: true,
+      data: todo,
+    });
+  } catch (error) {
+    res.status(500).json({ error: "Failed to Delete Todo" });
+  }
+};
+
 module.exports = {
   createTodo: createTodo,
   getTodo: getTodo,
+  deleteTodo: deleteTodo,
 };

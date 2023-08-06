@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "react-query";
-import { createTodo, getTodo } from "../../api/api";
+import { createTodo, deleteTodo, getTodo } from "../../api/api";
+import { toast } from "react-hot-toast";
 
 const Todo = () => {
   const [form, setForm] = useState({
@@ -34,6 +35,20 @@ const Todo = () => {
     console.log(form);
   };
 
+  //delete
+  const deleteMutation = useMutation({
+    mutationFn: deleteTodo,
+    onSuccess: () => {
+      queryClient.invalidateQueries(["todo"]);
+      toast.success("Deleted SuccessFully");
+    },
+  });
+
+  const handleDelete = (id) => {
+    console.log("Delete", id);
+    deleteMutation.mutate(id);
+  };
+
   if (isLoading) {
     return <h1>Loading...</h1>;
   }
@@ -61,12 +76,25 @@ const Todo = () => {
           </button>
         </form>
       </div>
-      <div>
-        <ul>
-          {data?.data.map((o) => (
-            <li>{o.todoName}</li>
-          ))}
-        </ul>
+      <div className="mt-3">
+        {data?.data.map((o, index) => (
+          <div key={index} className="card shadow p-3 mt-2 d-flex flex-row">
+            <div className="m-2">
+              <h6>{o.todoName}</h6>
+            </div>
+            <div className="ms-auto">
+              <button className="btn btn-outline-primary me-2">
+                <i className="bi bi-pencil-square"></i>
+              </button>
+              <button
+                className="btn btn-outline-danger"
+                onClick={() => handleDelete(o._id)}
+              >
+                <i className="bi bi-trash-fill"></i>
+              </button>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );

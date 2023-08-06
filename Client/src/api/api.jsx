@@ -42,6 +42,16 @@ export const getTodo = async () => {
   }
 }
 
+export const deleteTodo = async (id) => {
+  console.log("get haha", id)
+  try {
+    const response = await api.delete(`/api/deleteTodo/${id}`)
+    return response.data
+  } catch (error) {
+    throw error
+  }
+}
+
 export const getSuperHeroes = async () => {
   try {
     const response = await axios.get('http://localhost:4000/superheroes')
