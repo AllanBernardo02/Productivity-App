@@ -7,6 +7,7 @@ import Homepage from "./Pages/home/Homepage.jsx";
 import Fetch from "./Pages/React-Query/Fetch.jsx";
 import { ReactQueryDevtools } from "react-query/devtools";
 import PublicRoute from "./components/routesAccess/PublicRoute.jsx";
+import PrivateRoute from "./components/routesAccess/PrivateRoute.jsx";
 // import "./App.css";
 
 function App() {
@@ -15,7 +16,14 @@ function App() {
       <Toaster />
       <Router>
         <Routes>
-          <Route path="/homepage" element={<Homepage />} />
+          <Route
+            path="/homepage"
+            element={
+              <PrivateRoute>
+                <Homepage />
+              </PrivateRoute>
+            }
+          />
           <Route path="/fetch" element={<Fetch />} />
           <Route
             path="/signup"
