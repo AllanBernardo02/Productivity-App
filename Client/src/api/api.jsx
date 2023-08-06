@@ -24,6 +24,24 @@ export const loginUser = async (formData) => {
   }
 };
 
+export const createTodo = async (formData) => {
+  try {
+    const response = await api.post('/api/createTodo', formData)
+    return response.data
+  } catch (error) {
+    throw error
+  }
+}
+
+export const getTodo = async () => {
+  try {
+    const response = await api.get('/api/getTodo')
+    return response.data
+  } catch (error) {
+    throw error
+  }
+}
+
 export const getSuperHeroes = async () => {
   try {
     const response = await axios.get('http://localhost:4000/superheroes')

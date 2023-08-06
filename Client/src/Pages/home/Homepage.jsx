@@ -3,6 +3,17 @@ import React, { useState, useEffect } from "react";
 const Homepage = () => {
   const [timer, setTimer] = useState(0);
   const [isRunning, setIsRunning] = useState(false);
+  const [currentUser, setCurrentUser] = useState(null);
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+
+    if (storedUser) {
+      setCurrentUser(JSON.parse(storedUser));
+    }
+  }, []);
+
+  console.log("Current User", currentUser);
 
   useEffect(() => {
     let interval;

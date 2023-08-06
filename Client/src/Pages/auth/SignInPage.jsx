@@ -33,7 +33,7 @@ const SignInPage = () => {
         toast.success(response.message);
         localStorage.setItem("user", JSON.stringify(response));
         // sessionStorage.setItem("userToken", response.token);
-        navigate("/homepage");
+        navigate("/todopage");
       } else {
         console.log("No response");
       }

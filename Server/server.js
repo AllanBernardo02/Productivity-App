@@ -5,6 +5,7 @@ const cors = require("cors");
 require("dotenv").config();
 
 const userRoutes = require("./routes/user.js");
+const todoRoutes = require("./routes/todo.js");
 
 const dbConfig = require("./config/dbConfig");
 
@@ -16,6 +17,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api", userRoutes);
+app.use("/api", todoRoutes);
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);

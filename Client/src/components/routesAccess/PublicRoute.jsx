@@ -2,7 +2,7 @@ import { Route, Navigate } from 'react-router-dom';
 
 const PublicRoute = (props) => {
     if (localStorage.getItem("user")) {
-        return <Navigate to="/homepage" />;
+        return <Navigate to="/todopage" />;
       } else {
         return props.children;
       }

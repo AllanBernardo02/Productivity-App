@@ -8,6 +8,8 @@ import Fetch from "./Pages/React-Query/Fetch.jsx";
 import { ReactQueryDevtools } from "react-query/devtools";
 import PublicRoute from "./components/routesAccess/PublicRoute.jsx";
 import PrivateRoute from "./components/routesAccess/PrivateRoute.jsx";
+import Todo from "./Pages/crud/Todo.jsx";
+
 // import "./App.css";
 
 function App() {
@@ -16,6 +18,14 @@ function App() {
       <Toaster />
       <Router>
         <Routes>
+          <Route
+            path="/todopage"
+            element={
+              <PrivateRoute>
+                <Todo />
+              </PrivateRoute>
+            }
+          />
           <Route
             path="/homepage"
             element={
