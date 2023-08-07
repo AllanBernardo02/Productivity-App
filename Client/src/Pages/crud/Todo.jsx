@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { createTodo, deleteTodo, getTodo, updateTodo } from "../../api/api";
 import { toast } from "react-hot-toast";
@@ -91,6 +91,7 @@ const Todo = () => {
       <div>
         <form className="d-flex" onSubmit={(e) => handleSubmit(e)}>
           <input
+            placeholder="Input Todo Name"
             id="todoName"
             className="form-control me-3"
             onChange={handleChange}
