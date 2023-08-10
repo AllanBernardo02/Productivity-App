@@ -28,7 +28,7 @@ const Todo = () => {
     mutationFn: updateTodo, // Assuming you have an updateTodo function in your API to update todos.
     onSuccess: () => {
       queryClient.invalidateQueries(["todo"]);
-      toast.success("Data Updated SuccessFully");
+      toast.success("Data Updated SuccessFullys");
     },
   });
 
