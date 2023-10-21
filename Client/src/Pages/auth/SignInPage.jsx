@@ -39,6 +39,7 @@ const SignInPage = () => {
         console.log("hi")
         console.log("hi")
         console.log("hello")
+        console.log("hello")
       }
     } catch (error) {
       console.log("Login Error", error);
