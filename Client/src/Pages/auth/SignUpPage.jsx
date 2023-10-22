@@ -44,6 +44,7 @@ const SignUpPage = () => {
       console.log("error")
       console.log("error1")
       console.log("error2")
+      console.log("error3")
       throw error;
     }
   };
