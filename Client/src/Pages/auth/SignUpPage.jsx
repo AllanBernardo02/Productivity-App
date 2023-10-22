@@ -42,6 +42,7 @@ const SignUpPage = () => {
     } catch (error) {
       console.log("Error SignUp", error);
       console.log("error")
+      console.log("error1")
       throw error;
     }
   };
