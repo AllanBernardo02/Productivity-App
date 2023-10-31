@@ -5,6 +5,11 @@ import { useNavigate } from "react-router-dom";
 
 import toast from "react-hot-toast";
 
+/**
+   * when client send join room operation
+  
+   */
+
 const SignUpPage = () => {
   const [form, setForm] = useState({
     firstName: "",
@@ -41,7 +46,7 @@ const SignUpPage = () => {
       }
     } catch (error) {
       console.log("Error SignUp", error);
-  
+      console.log("Error SignUp", error);
       throw error;
     }
   };
