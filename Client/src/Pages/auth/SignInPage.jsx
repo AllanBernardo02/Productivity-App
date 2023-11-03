@@ -36,10 +36,7 @@ const SignInPage = () => {
         navigate("/todopage");
       } else {
         console.log("No response");
-        console.log("hi")
-        console.log("hi")
-        console.log("hello")
-        console.log("hello")
+       
       }
     } catch (error) {
       console.log("Login Error", error);
