@@ -27,6 +27,7 @@ export const loginUser = async (formData) => {
 export const createTodo = async (formData) => {
   try {
     const response = await api.post('/api/createTodo', formData)
+    console.log(response)
     return response.data
   } catch (error) {
     throw error
@@ -43,7 +44,6 @@ export const getTodo = async () => {
 }
 
 export const deleteTodo = async (id) => {
-  
   try {
     const response = await api.delete(`/api/deleteTodo/${id}`)
     return response.data
