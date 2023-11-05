@@ -28,6 +28,7 @@ export const createTodo = async (formData) => {
   try {
     const response = await api.post('/api/createTodo', formData)
     console.log(response)
+    console.log(response)
     return response.data
   } catch (error) {
     throw error
