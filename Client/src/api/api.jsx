@@ -1,10 +1,20 @@
 import axios from "axios";
 
-const BASE_URL = "http://localhost:5000";
+const BASE_URL = "http://localhost:5000/v1/";
 
 const api = axios.create({
   baseURL: BASE_URL,
 });
+
+export const getHris = async () => {
+  try {
+    const response = await api.get('/offices')
+
+    return response.data
+  } catch (error) {
+    throw error
+  }
+}
 
 export const registerUser = async (formData) => {
   try {
@@ -53,8 +63,8 @@ export const deleteTodo = async (id) => {
   }
 }
 
-export const updateTodo = async ({id, data}) => {
-  
+export const updateTodo = async ({ id, data }) => {
+
   try {
     const response = await api.patch(`/api/updateTodo/${id}`, data)
     return response.data
