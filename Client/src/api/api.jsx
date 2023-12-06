@@ -17,8 +17,10 @@ console.log(response)
 }
 
 export const registerUser = async (formData) => {
+  
   try {
     const response = await api.post("/api/signup", formData);
+    console.log(response)
     return response.data;
   } catch (error) {
     throw error;
