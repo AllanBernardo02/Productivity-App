@@ -9,7 +9,7 @@ const api = axios.create({
 export const getHris = async () => {
   try {
     const response = await api.get('/offices')
-console.log(response)
+    console.log(response)
     return response.data
   } catch (error) {
     throw error
@@ -17,10 +17,12 @@ console.log(response)
 }
 
 export const registerUser = async (formData) => {
-  
+
   try {
     const response = await api.post("/api/signup", formData);
     console.log(response)
+    console.log(response)
+    
     return response.data;
   } catch (error) {
     throw error;
