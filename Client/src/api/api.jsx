@@ -11,7 +11,7 @@ export const getHris = async () => {
     const response = await api.get('/offices')
     console.log(response)
     console.log(response)
-    console.log(response)
+    console.log("data2",response)
     console.log("data",response)
     return response.data
   } catch (error) {
