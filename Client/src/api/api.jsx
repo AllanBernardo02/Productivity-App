@@ -12,7 +12,7 @@ export const getHris = async () => {
     console.log(response)
     console.log(response)
     console.log(response)
-    console.log(response)
+    console.log("data",response)
     return response.data
   } catch (error) {
     throw error
