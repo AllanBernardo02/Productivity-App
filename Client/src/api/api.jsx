@@ -10,6 +10,7 @@ export const getHris = async () => {
   try {
     const response = await api.get('/offices')
     console.log(response)
+    console.log(response)
    
     return response.data
   } catch (error) {
