@@ -11,6 +11,7 @@ export const getHris = async () => {
     const response = await api.get('/offices')
 console.log("try")
 console.log("try2")
+console.log("try3")
     return response.data
   } catch (error) {
     throw error
