@@ -9,7 +9,7 @@ const api = axios.create({
 export const getHris = async () => {
   try {
     const response = await api.get('/offices')
-
+console.log("try")
    
     return response.data
   } catch (error) {
