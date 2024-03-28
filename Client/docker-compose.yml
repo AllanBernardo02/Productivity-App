@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  server:
+    container_name: productivity
+    image: nginx:alpine3.18
+    restart: always
+    volumes:
+      - ./dist:/usr/share/nginx/html
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+
+    ports:
+     - "81:80"
+    labels:
+      - traefik.enable=true
+      - traefik.http.services.hris.loadbalancer.server.port=80
+      - traefik.http.routers.hris.rule=Host("uat.bi.govph.net")
+      - traefik.http.routers.hris.entrypoints=web
+      - traefik.http.routers.hris_secured.rule=Host("uat.bi.govph.net")
+      - traefik.http.routers.hris_secured.entrypoints=websecure
+      - traefik.http.routers.hris_secured.tls.certresolver=myhttpchallenge
+      - traefik.http.routers.hris.middlewares=redirect@file
+
+
+networks:
+  default:
+    external:
+      name: server-network
