@@ -29,6 +29,7 @@ const SignInPage = () => {
 
       const response = await loginUser(values);
       console.log(response);
+      console.log(response);
       if (response) {
         toast.success(response.message);
         localStorage.setItem("user", JSON.stringify(response));
